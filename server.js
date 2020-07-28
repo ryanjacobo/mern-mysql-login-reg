@@ -2,7 +2,8 @@ var express = require('express')
 var cors = require('cors')
 var bodyParser = require('body-parser')
 var app = express()
-var port = process.env.PORT || 5000
+
+var port = process.env.PORT || 3000
 
 app.use(bodyParser.json())
 app.use(cors())
@@ -14,8 +15,16 @@ app.use(
 
 var Users = require('./routes/Users')
 
+// Added
+// view engine setup
+// app.set('views', path.join(__dirname, 'views'));
+// app.set('view engine', 'hbs');
+
+app.use('/', require('./routes/index'));
 app.use('/users', Users)
 
 app.listen(port, function() {
   console.log('Server is running on port: ' + port)
 })
+
+// module.exports = server;
